@@ -16,6 +16,7 @@ import com.spotify.sdk.android.player.PlayerState;
 import com.spotify.sdk.android.player.Spotify;
 
 import java.util.List;
+import java.util.Map;
 
 import kaaes.spotify.webapi.android.SpotifyApi;
 import kaaes.spotify.webapi.android.SpotifyService;
@@ -72,36 +73,8 @@ public class MainActivity extends Activity implements
                         mPlayer = player;
                         mPlayer.addConnectionStateCallback(MainActivity.this);
                         mPlayer.addPlayerNotificationCallback(MainActivity.this);
-                        //mPlayer.play("spotify:user:spotify:playlist:3rgsDhGHZxZ9sB9DQWQfuf");
+                        mPlayer.play("spotify:user:spotify:playlist:3rgsDhGHZxZ9sB9DQWQfuf");
                         Log.d("Playlist", "Playlist was initiated");
-
-                        SpotifyApi api = new SpotifyApi();
-
-                        Intent intent = getIntent();
-                        String token = intent.getStringExtra(EXTRA_TOKEN);
-
-                        // Most (but not all) of the Spotify Web API endpoints require authorisation.
-                        // If you know you'll only use the ones that don't require authorisation you can skip this step
-                        api.setAccessToken(token);
-
-                        SpotifyService spotify = api.getService();
-
-                        spotify.getAlbum("2dIGnmEIy1WZIcZCFSj6i8", new Callback<Album>() {
-                            @Override
-                            public void success(Album album, Response response) {
-                                Log.d("Album success", album.name);
-                            }
-
-                            @Override
-                            public void failure(RetrofitError error) {
-                                Log.d("Album failure", error.toString());
-                            }
-                        });
-                        Pager<PlaylistTrack> playlistTracks = spotify.getPlaylistTracks("test", "test");
-                        List<PlaylistTrack> tracks = playlistTracks.items;
-                        Track track = tracks.get(0).track;
-                        mPlayer.play(track.uri);
-                        Log.d("Owner ID", track.name);
                     }
 
                     @Override
@@ -109,6 +82,35 @@ public class MainActivity extends Activity implements
                         Log.e("MainActivity", "Could not initialize player: " + throwable.getMessage());
                     }
                 });
+
+                /*SpotifyApi api = new SpotifyApi();
+
+                String token = intent.getStringExtra(EXTRA_TOKEN);
+
+                // Most (but not all) of the Spotify Web API endpoints require authorisation.
+                // If you know you'll only use the ones that don't require authorisation you can skip this step
+                api.setAccessToken(token);
+
+                SpotifyService spotify = api.getService();
+
+                spotify.getPlaylistTracks("spotify_netherlands","3r8ok7gRfb23XIQTZ3ttOK", new Callback<Pager<PlaylistTrack>>() {
+                    @Override
+                    public void success(Pager<PlaylistTrack> playlistTrackPager, Response response) {
+                        Log.e("TEST", "GOT the tracks in playlist");
+                        List<PlaylistTrack> tracks = playlistTrackPager.items;
+                        for( PlaylistTrack pt : tracks){
+                            Log.e("TEST", pt.track.name + " - " + pt.track.id);
+                            Track track = pt.track;
+                            mPlayer.play(track.uri);
+                            Log.d("Track name", track.name);
+                        }
+                    }
+                    @Override
+                    public void failure(RetrofitError error) {
+                        Log.e("TEST", error.getMessage());
+
+                    }
+                });*/
             }
         }
     }
