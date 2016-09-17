@@ -16,25 +16,31 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug {
+            debuggable true
+        }
     }
 }
 
 repositories {
     mavenCentral()
+    maven { url "https://jitpack.io" }
     flatDir {
         dirs 'libs'
     }
 }
 
 dependencies {
+    compile 'com.github.kaaes:spotify-web-api-android:0.4.1'
     compile fileTree(dir: 'libs', include: ['*.jar'])
-
     // This library handles authentication and authorization
     compile 'com.spotify.sdk:spotify-auth:1.0.0-beta13@aar'
-
     // This library handles music playback
     compile 'com.spotify.sdk:spotify-player:1.0.0-beta13@aar'
-
     // All other dependencies for your app should also be here:
     compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.google.code.gson:gson:2.2.4'
+    compile 'com.squareup.okio:okio:1.2.0'
+    compile 'com.squareup.retrofit:retrofit:1.9.0'
+    compile 'com.squareup.okhttp:okhttp:2.2.0'
 }
