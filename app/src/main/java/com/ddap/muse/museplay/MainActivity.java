@@ -25,6 +25,7 @@ import com.choosemuse.libmuse.AnnotationData;
 import com.choosemuse.libmuse.ConnectionState;
 import com.choosemuse.libmuse.Eeg;
 import com.choosemuse.libmuse.LibmuseVersion;
+import com.choosemuse.libmuse.LogManager;
 import com.choosemuse.libmuse.MessageType;
 import com.choosemuse.libmuse.Muse;
 import com.choosemuse.libmuse.MuseArtifactPacket;
@@ -118,8 +119,6 @@ public class MainActivity extends Activity implements
      */
     private final double[] eegBuffer = new double[6];
     private boolean eegStale;
-    private final double[] alphaBuffer = new double[6];
-    private boolean alphaStale;
     private final double[] accelBuffer = new double[3];
     private boolean accelStale;
 
@@ -156,6 +155,58 @@ public class MainActivity extends Activity implements
      */
     private final AtomicReference<Handler> fileHandler = new AtomicReference<>();
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        // We need to set the context on MuseManagerAndroid before we can do anything.
+        // This must come before other LibMuse API calls as it also loads the library.
+        manager = MuseManagerAndroid.getInstance();
+        manager.setContext(this);
+
+        Log.i(TAG, "LibMuse version=" + LibmuseVersion.instance().getString());
+
+        WeakReference<MainActivity> weakActivity =
+                new WeakReference<MainActivity>(this);
+        // Register a listener to receive connection state changes.
+        connectionListener = new ConnectionListener(weakActivity);
+        // Register a listener to receive data from a Muse.
+        dataListener = new DataListener(weakActivity);
+        // Register a listener to receive notifications of what Muse headbands
+        // we can connect to.
+        manager.setMuseListener(new MuseL(weakActivity));
+
+        // Muse 2016 (MU-02) headbands use Bluetooth Low Energy technology to
+        // simplify the connection process.  This requires access to the COARSE_LOCATION
+        // or FINE_LOCATION permissions.  Make sure we have these permissions before
+        // proceeding.
+        ensurePermissions();
+
+        // Load and initialize our UI.
+
+        // Start up a thread for asynchronous file operations.
+        // This is only needed if you want to do File I/O.
+        fileThread.start();
+
+        // Start our asynchronous updates of the UI.
+        //handler.post(tickUi);
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        AuthenticationRequest.Builder builder = new AuthenticationRequest.Builder(CLIENT_ID,
+                AuthenticationResponse.Type.TOKEN,
+                REDIRECT_URI);
+        builder.setScopes(new String[]{"user-read-private", "streaming"});
+        AuthenticationRequest request = builder.build();
+
+        AuthenticationClient.openLoginActivity(this, REQUEST_CODE, request);
+
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+    }
 
     //--------------------------------------
     // Lifecycle / Connection code
@@ -281,11 +332,6 @@ public class MainActivity extends Activity implements
                 assert(accelBuffer.length >= n);
                 getAccelValues(p);
                 accelStale = true;
-                break;
-            case ALPHA_RELATIVE:
-                assert(alphaBuffer.length >= n);
-                getEegChannelValues(alphaBuffer,p);
-                alphaStale = true;
                 break;
             case BATTERY:
             case DRL_REF:
@@ -528,59 +574,6 @@ public class MainActivity extends Activity implements
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient client;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        // We need to set the context on MuseManagerAndroid before we can do anything.
-        // This must come before other LibMuse API calls as it also loads the library.
-        manager = MuseManagerAndroid.getInstance();
-        manager.setContext(this);
-
-        Log.i(TAG, "LibMuse version=" + LibmuseVersion.instance().getString());
-
-        WeakReference<MainActivity> weakActivity =
-                new WeakReference<MainActivity>(this);
-        // Register a listener to receive connection state changes.
-        connectionListener = new ConnectionListener(weakActivity);
-        // Register a listener to receive data from a Muse.
-        dataListener = new DataListener(weakActivity);
-        // Register a listener to receive notifications of what Muse headbands
-        // we can connect to.
-        manager.setMuseListener(new MuseL(weakActivity));
-
-        // Muse 2016 (MU-02) headbands use Bluetooth Low Energy technology to
-        // simplify the connection process.  This requires access to the COARSE_LOCATION
-        // or FINE_LOCATION permissions.  Make sure we have these permissions before
-        // proceeding.
-        ensurePermissions();
-
-        // Load and initialize our UI.
-
-        // Start up a thread for asynchronous file operations.
-        // This is only needed if you want to do File I/O.
-        fileThread.start();
-
-        // Start our asynchronous updates of the UI.
-        //handler.post(tickUi);
-
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        AuthenticationRequest.Builder builder = new AuthenticationRequest.Builder(CLIENT_ID,
-                AuthenticationResponse.Type.TOKEN,
-                REDIRECT_URI);
-        builder.setScopes(new String[]{"user-read-private", "streaming"});
-        AuthenticationRequest request = builder.build();
-
-        AuthenticationClient.openLoginActivity(this, REQUEST_CODE, request);
-
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
