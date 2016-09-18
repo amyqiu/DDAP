@@ -694,6 +694,20 @@ public class MainActivity extends Activity implements
         return "63dDpdoVHvx5RkK87g4LKk";
     }
 
+    public String playFocusPlaylist(Player player){
+
+        List<String> tracks = Arrays.asList("spotify:track:50mwGp3PgKoZldhBvfy2cf", "spotify:track:10Fb5CydCmYW3lqQGjNb04");
+        for(String trackURI:tracks)
+        {
+            Log.d("URI", trackURI);
+            mPlayer = player;
+            mPlayer.addConnectionStateCallback(MainActivity.this);
+            mPlayer.addPlayerNotificationCallback(MainActivity.this);
+            mPlayer.play(trackURI);
+        }
+        //Return the URI of the playlist
+        return "2ujjMpFriZ2nayLmrD1Jgl";
+    }
 
     @Override
     public void onLoggedIn() {
