@@ -32,7 +32,7 @@ repositories {
 
 dependencies {
     compile 'com.github.kaaes:spotify-web-api-android:0.4.1'
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     // This library handles authentication and authorization
     compile 'com.spotify.sdk:spotify-auth:1.0.0-beta13@aar'
     // This library handles music playback
@@ -43,4 +43,5 @@ dependencies {
     compile 'com.squareup.okio:okio:1.2.0'
     compile 'com.squareup.retrofit:retrofit:1.9.0'
     compile 'com.squareup.okhttp:okhttp:2.2.0'
+    compile 'com.google.android.gms:play-services-appindexing:8.1.0'
 }
