@@ -587,7 +587,8 @@ public class MainActivity extends Activity implements
                         mPlayer = player;
                         mPlayer.addConnectionStateCallback(MainActivity.this);
                         mPlayer.addPlayerNotificationCallback(MainActivity.this);
-                        mPlayer.play("spotify:user:spotify:playlist:3rgsDhGHZxZ9sB9DQWQfuf");
+                        //mPlayer.play("spotify:user:spotify:playlist:3rgsDhGHZxZ9sB9DQWQfuf");
+                        playHappyPlaylist(player);
                         Log.d("Playlist", "Playlist was initiated");
                     }
 
@@ -627,6 +628,65 @@ public class MainActivity extends Activity implements
                 });*/
             }
         }
+    }
+    public String playHappyPlaylist(Player player){
+
+        List<String> tracks = Arrays.asList("spotify:track:50mwGp3PgKoZldhBvfy2cf", "spotify:track:10Fb5CydCmYW3lqQGjNb04");
+        for(String trackURI:tracks)
+        {
+            Log.d("URI", trackURI);
+            mPlayer = player;
+            mPlayer.addConnectionStateCallback(MainActivity.this);
+            mPlayer.addPlayerNotificationCallback(MainActivity.this);
+            mPlayer.play(trackURI);
+        }
+        //Return the URI of the playlist
+        return "3SXtTLpEuiEgovsSM6o4bF";
+    }
+
+    public String playStressPlaylist(Player player){
+
+        List<String> tracks = Arrays.asList("spotify:track:50mwGp3PgKoZldhBvfy2cf", "spotify:track:10Fb5CydCmYW3lqQGjNb04");
+        for(String trackURI:tracks)
+        {
+            Log.d("URI", trackURI);
+            mPlayer = player;
+            mPlayer.addConnectionStateCallback(MainActivity.this);
+            mPlayer.addPlayerNotificationCallback(MainActivity.this);
+            mPlayer.play(trackURI);
+        }
+        //Return the URI of the playlist
+        return "3SXtTLpEuiEgovsSM6o4bF";
+    }
+
+    public String playSleepPlaylist(Player player){
+
+        List<String> tracks = Arrays.asList("spotify:track:50mwGp3PgKoZldhBvfy2cf", "spotify:track:10Fb5CydCmYW3lqQGjNb04");
+        for(String trackURI:tracks)
+        {
+            Log.d("URI", trackURI);
+            mPlayer = player;
+            mPlayer.addConnectionStateCallback(MainActivity.this);
+            mPlayer.addPlayerNotificationCallback(MainActivity.this);
+            mPlayer.play(trackURI);
+        }
+        //Return the URI of the playlist
+        return "5UMleIsaNDK5LzZRbrbcXr";
+    }
+
+    public String playFocusPlaylist(Player player){
+
+        List<String> tracks = Arrays.asList("spotify:track:50mwGp3PgKoZldhBvfy2cf", "spotify:track:10Fb5CydCmYW3lqQGjNb04");
+        for(String trackURI:tracks)
+        {
+            Log.d("URI", trackURI);
+            mPlayer = player;
+            mPlayer.addConnectionStateCallback(MainActivity.this);
+            mPlayer.addPlayerNotificationCallback(MainActivity.this);
+            mPlayer.play(trackURI);
+        }
+        //Return the URI of the playlist
+        return "2ujjMpFriZ2nayLmrD1Jgl";
     }
 
     @Override
