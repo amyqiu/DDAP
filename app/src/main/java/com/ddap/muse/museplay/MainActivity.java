@@ -57,6 +57,8 @@ import com.spotify.sdk.android.player.Spotify;
 
 import java.io.File;
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -638,63 +640,67 @@ public class MainActivity extends Activity implements
     }
     public String playHappyPlaylist(Player player){
 
-        List<String> tracks = Arrays.asList("spotify:track:50mwGp3PgKoZldhBvfy2cf", "spotify:track:10Fb5CydCmYW3lqQGjNb04");
-        for(String trackURI:tracks)
+        List<Track> happyTracks = new ArrayList<>();
+        happyTracks.add(0, new Track ("7BKLCZ1jbUBVqRi2FVlTVw", "Closer","The Chainsmokers / Halsey", "Closer" ));
+        happyTracks.add(1, new Track ("22Re0OiJOEP7xk5XwshMEA", "Don’t Need Nobody","Ellie Goulding", "Delirium" ));
+        happyTracks.add(2, new Track ("27SdWb2rFzO6GWiYDBTD9j", "Cheap Thrills","Sia", "This is Acting" ));
+        happyTracks.add(3, new Track ("7xrA11O07xo57Bbg6p4hck", "Body Say","Demi Lovato", "Body Say" ));
+        happyTracks.add(4, new Track ("2meEiZKWkiN28gITzFwQo5", "Into You","Ariana Grande", "Dangerous Woman" ));
+
+        for(Track track:happyTracks)
         {
-            Log.d("URI", trackURI);
+            Log.d("URI", track.getURI());
             mPlayer = player;
             mPlayer.addConnectionStateCallback(MainActivity.this);
             mPlayer.addPlayerNotificationCallback(MainActivity.this);
-            mPlayer.play(trackURI);
+            mPlayer.play(track.getURI());
+        }
+        //Return the URI of the playlist
+        return "2JkjXscXs35c5wKE5ZeaYK";
+    }
+
+    public String playStressedPlaylist(Player player){
+
+        List<Track> destressTracks = new ArrayList<>();
+        destressTracks.add(0, new Track ("22NBlgXMSlPFSXoQn9GEpV", "Isle of Water","Jonatan Mollberg", "Flakes of Color" ));
+        destressTracks.add(1, new Track ("5LopRVLII1pAVeQxm8tNpI", "Embers","Tracey Chattaway", "Third Place" ));
+        destressTracks.add(2, new Track ("2OkkLiBryxLeqtPmaecas4", "Perla","Islands of Light", "Elements" ));
+        destressTracks.add(3, new Track ("06FmYX8gaPzdYkDSMGKHzc", "A Summer by the Sea","Library Tapes", "Escapism" ));
+        destressTracks.add(4, new Track ("2he1OylKI9ooYHDxL0nV37", "Dawning","LUCHS", "Dawning" ));
+
+        for(Track track:destressTracks)
+        {
+            Log.d("URI", track.getURI());
+            mPlayer = player;
+            mPlayer.addConnectionStateCallback(MainActivity.this);
+            mPlayer.addPlayerNotificationCallback(MainActivity.this);
+            mPlayer.play(track.getURI());
         }
         //Return the URI of the playlist
         return "3SXtTLpEuiEgovsSM6o4bF";
     }
 
-    public String playStressPlaylist(Player player){
+    public String playFocusedPlaylist(Player player){
 
-        List<String> tracks = Arrays.asList("spotify:track:50mwGp3PgKoZldhBvfy2cf", "spotify:track:10Fb5CydCmYW3lqQGjNb04");
-        for(String trackURI:tracks)
+        List<Track> focusTracks = new ArrayList<>();
+        focusTracks.add(0, new Track ("2vr6fjMZm1pliQ3a6HL8MT", "La Clairlere","Piano Novel", "La Clairiere" ));
+        focusTracks.add(1, new Track ("07Hk13m0dIGWhGr9B4yEsJ", "Etude","Joep Beving", "Solipsism" ));
+        focusTracks.add(2, new Track ("3aLof1zmaQ0GLcAc9YQ3Fq", "Nuvole Bianche","Ludovico Eianaudi", "Una Mattina" ));
+        focusTracks.add(3, new Track ("6HJovBuWj41I2jL94QpVj5", "Hers","The Arcadian Wild", "The Arcadian Wild" ));
+        focusTracks.add(4, new Track ("0gQiiQnqlY45tRn6AAh8Hj", "Interlude for Piano","Peter Bradley Adams", "Between Us" ));
+
+        for(Track track:focusTracks)
         {
-            Log.d("URI", trackURI);
+            Log.d("URI", track.getURI());
             mPlayer = player;
             mPlayer.addConnectionStateCallback(MainActivity.this);
             mPlayer.addPlayerNotificationCallback(MainActivity.this);
-            mPlayer.play(trackURI);
+            mPlayer.play(track.getURI());
         }
         //Return the URI of the playlist
-        return "3SXtTLpEuiEgovsSM6o4bF";
+        return "63dDpdoVHvx5RkK87g4LKk";
     }
 
-    public String playSleepPlaylist(Player player){
-
-        List<String> tracks = Arrays.asList("spotify:track:50mwGp3PgKoZldhBvfy2cf", "spotify:track:10Fb5CydCmYW3lqQGjNb04");
-        for(String trackURI:tracks)
-        {
-            Log.d("URI", trackURI);
-            mPlayer = player;
-            mPlayer.addConnectionStateCallback(MainActivity.this);
-            mPlayer.addPlayerNotificationCallback(MainActivity.this);
-            mPlayer.play(trackURI);
-        }
-        //Return the URI of the playlist
-        return "5UMleIsaNDK5LzZRbrbcXr";
-    }
-
-    public String playFocusPlaylist(Player player){
-
-        List<String> tracks = Arrays.asList("spotify:track:50mwGp3PgKoZldhBvfy2cf", "spotify:track:10Fb5CydCmYW3lqQGjNb04");
-        for(String trackURI:tracks)
-        {
-            Log.d("URI", trackURI);
-            mPlayer = player;
-            mPlayer.addConnectionStateCallback(MainActivity.this);
-            mPlayer.addPlayerNotificationCallback(MainActivity.this);
-            mPlayer.play(trackURI);
-        }
-        //Return the URI of the playlist
-        return "2ujjMpFriZ2nayLmrD1Jgl";
-    }
 
     @Override
     public void onLoggedIn() {
