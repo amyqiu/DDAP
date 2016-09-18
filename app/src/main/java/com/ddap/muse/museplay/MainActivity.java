@@ -60,9 +60,9 @@ import java.lang.ref.WeakReference;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
+
 public class MainActivity extends Activity implements
         PlayerNotificationCallback, ConnectionStateCallback {
-
 
     /**
      * Tag used for logging purposes.
