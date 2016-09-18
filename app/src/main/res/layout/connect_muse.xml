@@ -70,7 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:text="Start Playlist"
+            android:text="Play"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:textAppearance="?android:attr/textAppearanceLarge"/>
@@ -81,7 +81,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:text="Stop Playlist"
+            android:text="Stop"
             android:textAppearance="?android:attr/textAppearanceLarge"/>
 
     </LinearLayout>
