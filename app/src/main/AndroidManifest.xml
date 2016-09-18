@@ -19,6 +19,8 @@
 
         </activity>
 
+        <activity android:label="@string/app_name" android:name=".ConnectMuse"/>
+
         <!-- Needed for LoginActivity to work -->
         <activity
             android:name="com.spotify.sdk.android.authentication.LoginActivity"
