@@ -58,7 +58,10 @@ import com.spotify.sdk.android.player.Spotify;
 
 import java.io.File;
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Timer;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class MainActivity extends Activity implements
@@ -188,6 +191,39 @@ public class MainActivity extends Activity implements
 
         // Start our asynchronous updates of the UI.
         //handler.post(tickUi);
+
+
+        long startTimeMillis = System.currentTimeMillis();
+
+        int runningTimeSeconds = 10;    // Ten seconds running time for data collection.
+
+        double maxEeg = 0;
+
+        while (System.currentTimeMillis() < startTimeMillis + runningTimeSeconds*1000) {
+            if (eegBuffer[0] > maxEeg){
+                maxEeg = eegBuffer[0];
+            }
+        }
+
+        // CREATE ENUM FOR EACH EMOTION
+        // Scale is looking like:
+        // 1 - 1000 : calmness/meditation
+        // 1 - 1200 :
+        // 1200+ :
+
+        Emotion userEmotion;
+
+        if (maxEeg < 950) {
+            // Maybe display the emotion to the user through TextView and
+            // show the respective playlist
+        }
+        else if (maxEeg > 1000 && maxEeg < 1200) {
+            // same thing different emotion
+        }
+        else {
+            // etc
+        }
+        
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
