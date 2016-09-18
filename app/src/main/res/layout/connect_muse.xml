@@ -7,12 +7,12 @@
     android:background="@drawable/background1"
     android:orientation="vertical"
     android:weightSum="1"
-    tools:context="com.ddap.muse.museplay.MainActivity">
+    tools:context="com.ddap.muse.museplay.ConnectMuse">
 
     <ImageView
         android:id="@+id/logo1"
-        android:layout_width="410dp"
-        android:layout_height="150dp"
+        android:layout_width="407dp"
+        android:layout_height="130dp"
         android:scaleType="fitStart"
         android:src="@drawable/musewave1"
         android:layout_marginTop="8dp"/>
@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:text="  PLAYLIST"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:layout_marginBottom="16dp"/>
+            android:layout_marginBottom="4dp"/>
 
     </LinearLayout>
 
@@ -65,34 +65,161 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
+        <ImageButton
             android:id="@+id/play"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
             android:layout_gravity="left"
-            android:text="Play"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:textAppearance="?android:attr/textAppearanceLarge"/>
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:src="@drawable/play"
+            android:scaleType="fitXY"
+            />
 
-
-        <Button
+        <ImageButton
             android:id="@+id/stop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:text="Stop"
-            android:textAppearance="?android:attr/textAppearanceLarge"/>
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:src="@drawable/stop"
+            android:scaleType="fitXY"
+            />
 
     </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/textView"
+        android:text="SONG NAME 1"
+        android:id="@+id/songname1"
         android:layout_marginLeft="8dp"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
 
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="SONG ARTIST 1"
+        android:id="@+id/songartist1"
+        android:layout_marginLeft="8dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="SONG ALBUM 1"
+        android:id="@+id/songalbum1"
+        android:layout_marginLeft="8dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="SONG NAME 2"
+        android:id="@+id/songname2"
+        android:layout_marginLeft="8dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="SONG ARTIST 2"
+        android:id="@+id/songartist2"
+        android:layout_marginLeft="8dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="SONG ALBUM 2"
+        android:id="@+id/songalbum2"
+        android:layout_marginLeft="8dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="SONG NAME 3"
+        android:id="@+id/songname3"
+        android:layout_marginLeft="8dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="SONG ARTIST 3"
+        android:id="@+id/songartist3"
+        android:layout_marginLeft="8dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="SONG ALBUM 3"
+        android:id="@+id/songalbum3"
+        android:layout_marginLeft="8dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="SONG NAME 4"
+        android:id="@+id/songname4"
+        android:layout_marginLeft="8dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="SONG ARTIST 4"
+        android:id="@+id/songartist4"
+        android:layout_marginLeft="8dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="SONG ALBUM 4"
+        android:id="@+id/songalbum4"
+        android:layout_marginLeft="8dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="SONG NAME 5"
+        android:id="@+id/songname5"
+        android:layout_marginLeft="8dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="SONG ARTIST 5"
+        android:id="@+id/songartist5"
+        android:layout_marginLeft="8dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="SONG ALBUM 5"
+        android:id="@+id/songalbum5"
+        android:layout_marginLeft="8dp"/>
 </LinearLayout>
